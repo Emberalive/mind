@@ -1,0 +1,152 @@
+:root {
+    --background: #f2f5fd;
+    --Tertiary: #FCD0A1;
+    --Secondary: #566246;
+    --Primary: #A0ADD5;
+
+    --accent: #EDF0FB;
+
+    --text-weight: 700;
+}
+
+p {
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    height: 100vh;
+    background-color: var(--background);
+    font-family: 'Inter', sans-serif;
+}
+
+.menu {
+    padding: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+.greeting > p {
+    font-size: 22px;
+    margin: 0;
+    font-weight: var(--text-weight);
+}
+
+.menu > .menu-items {
+    display: flex;
+    max-width: 200px;
+    align-items: center;
+    flex-direction: row;
+    border-bottom: 1px solid var(--Tertiary);
+}
+
+.menu > .menu-items > .menu-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    height: 33px;
+}
+.menu > .menu-items > .menu-item > img{
+    height: 30px;
+    width: 30px;
+}
+
+
+/*--------------------- Weather ---------------------*/
+.weather {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+    border-radius: 15px;
+    background-color: var(--accent);
+    height: 100px;
+    padding: 0 15px;
+
+}
+
+.weather > .weather-container > p {
+    font-size: 10px;
+    margin: 5px 0 0 0;
+}
+
+.weather > .weather-container {
+    border-bottom: 1px solid var(--Secondary);
+    margin: 10px 0;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 5px;
+    flex-direction: column;
+}
+
+.weather > .weather-container > img {
+    height: 40px;
+
+}
+#weather-title {
+    display: flex;
+    flex-direction: row;
+    gap: 3px;
+}
+
+#weather-title__city {
+    color: var(--Primary);
+    font-weight: bold;
+}
+
+/*------------------------ Pin ----------------------------*/
+
+.pin-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pin {
+    height: 500px;
+    width: 90%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.indicator-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin: 20px 0 40px 0;
+}
+
+.indicator {
+    border: 1px solid var(--Secondary);
+    border-radius: 100px;
+    height: 10px;
+    width: 10px;
+}
+.pin-row {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+
+.pin-button {
+    height: 50px;
+    width: 50px;
+    border-radius: 100px;
+    background-color: var(--accent);
+    box-shadow: #566246 1px 1px 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
