@@ -9,7 +9,6 @@ export default function Pin () {
         console.log(`Count: ${count}, Pin Entered: ${pinEntered.join('')}`);
     }, [count, pinEntered]);
 
-
     function onPinClick (value) {
         if (count !== 4) {
             setCount(count + 1)
@@ -29,7 +28,7 @@ export default function Pin () {
     return (
         <div className="pin-wrapper">
             <div className="pin">
-                <p>Please Enter Your Pin</p>
+                <p>{localStorage.getItem("hasPin") === "false" ? "please create a pin" : "Please Enter Your Pin"}</p>
                 <div className="indicator-container">
                     {indicatorList}
                 </div>

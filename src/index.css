@@ -1,12 +1,16 @@
 :root {
     --background: #f2f5fd;
     --Tertiary: #FCD0A1;
-    --Secondary: #566246;
+    --Secondary: rgb(86, 98, 70);
     --Primary: #A0ADD5;
 
     --accent: #EDF0FB;
 
     --text-weight: 700;
+}
+
+div {
+    font-family: 'Inter', sans-serif;
 }
 
 p {
@@ -165,3 +169,78 @@ body {
     box-shadow: none;
 }
 
+/*------------------------- from ----------------------*/
+
+.createFrom__wrapper {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.createFrom__wrapper > h1 {
+    color: var(--Secondary);
+}
+
+.createForm {
+    height: 100%;
+    border-radius: 10px;
+    background-color: var(--accent);
+    padding: 10px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.createForm__input {
+    width: 80%;
+    height: 2rem;
+    border-radius: 15px;
+    border: 2px solid var(--Primary);
+    outline: none;
+    padding: 7px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.createForm__input::placeholder {
+    color: #566246A8;
+}
+
+.createForm__label {
+    text-align: left;
+    width: 80%;
+    color: var(--Primary);
+}
+
+.createForm__title {
+    color: var(--Primary);
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+}
+
+.createForm_input__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.createForm__button {
+    outline: none;
+    border: none;
+    background-color: var(--Secondary);
+    color: #ffff;
+    font-weight: 700;
+    cursor: pointer;
+    width: 70%;
+    height: 40px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 20px;
+}
