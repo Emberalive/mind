@@ -9,11 +9,11 @@ export default function Menu(props) {
                 <div className="logo">
 
                 </div>
-                <p>Hello, {user.name}</p>
+                <p>Hello, {user.fullName}</p>
             </div>
             <div className="menu-items">
                 <div className="menu-item">
-                    <p>{user.name}</p>
+                    <p>{user.fullName}</p>
                     <img src={ProfileIcon} alt={"This is a profile icon"}/>
                 </div>
             </div>

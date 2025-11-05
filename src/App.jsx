@@ -6,18 +6,50 @@ import Pin from './components/Pin.jsx';
 import CreateAccount from './components/CreateAccount.jsx';
 
 export default function App() {
+
+    const [accountCreated, setAccountCreated] = useState(
+        localStorage.getItem("accountCreated") === "true"
+    );
+    const [hasDetails, setHasDetails] = useState(
+        localStorage.getItem("hasDetails") === "true"
+    );
+    const [hasPin, setHasPin] = useState(
+        localStorage.getItem("hasPin") === "true"
+    );
+    const [loggedIn, setLoggedIn] = useState(false);
+
+    const [user, setUser] = useState({});
+
     useEffect(() => {
-        localStorage.setItem("accountCreated", "false")
-        localStorage.setItem("hasDetails", "false")
-        localStorage.setItem("hasPin", "false")
-        console.log("created the local storage and that")
-    }, [])
+        if (localStorage.getItem("accountCreated") === null) {
+            localStorage.setItem("accountCreated", "false");
+            console.log("accountCreated set as false");
+        }
+
+        if (localStorage.getItem("hasDetails") === null) {
+            localStorage.setItem("hasDetails", "false");
+        }
+
+        if (localStorage.getItem("hasPin") === null) {
+            localStorage.setItem("hasPin", "false");
+        }
+
+        console.log("Initialized local storage only if not already set");
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem("accountCreated", "false");
+
+        localStorage.setItem("hasDetails", "false");
+
+        localStorage.setItem("hasPin", "false");
+
+        console.log("Initialized local storage only if not already set");
+    }, []);
+
 
     const [pinEntered, setPinEntered] = useState([]);
-    const [user, setUser] = useState({
-        name: "Bob",
-        city: "Brighton"
-    });
+
     const [weather, setWeather] = useState({
         precipitation: "heavy Rain",
         temperature: 20,
@@ -26,17 +58,22 @@ export default function App() {
     })
   return (
     <main>
-        {localStorage.getItem("accountCreated") === "true" && <>
+        {accountCreated === true && <>
             <Menu user={user}/>
             <Weather weather={weather}
                      user={user}/>
-            <Pin/>
+            {loggedIn === false && <Pin/>}
         </>}
-        {localStorage.getItem("hasDetails") === "false" && <>
-            <CreateAccount />
+        {hasDetails === false && <>
+            <CreateAccount user={user} setUser={setUser} />
         </>}
-        {(localStorage.getItem("hasDetails") === "true" && localStorage.getItem("hasPin") === "false") && <>
-            <Pin/>
+        {(hasDetails === true && hasPin === false) && <>
+            <Pin hasPin={hasPin} setHasPin={setHasPin}
+                 accountCreated={accountCreated}
+                 setAccountCreated={setAccountCreated}
+                 loggedIn={loggedIn}
+                 setLoggedIn={setLoggedIn}
+            />
         </>}
 
     </main>

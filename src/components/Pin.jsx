@@ -1,6 +1,6 @@
 import {useState,  useEffect} from "react";
 
-export default function Pin () {
+export default function Pin (props) {
     const [count, setCount] = useState(0);
     const indicators = [1, 2, 3, 4]
     const [pinEntered, setPinEntered] = useState([]);
@@ -21,6 +21,21 @@ export default function Pin () {
             setPinEntered((prevState) => prevState.slice(0, -1))
         }//else do nothing
     }
+
+    function createPin (pin) {
+        if (localStorage.getItem("hasPin") === "false") {
+            localStorage.setItem("hasPin", "true")
+            props.setHasPin(true)
+            localStorage.setItem("pin", JSON.stringify(pin))
+            if (localStorage.getItem("pin") !== null) {
+                localStorage.setItem("accountCreated", "true")
+                console.log("account created set to true: " + JSON.stringify(localStorage.getItem("accountCreated")) )
+                props.setAccountCreated(true)
+                props.setLoggedIn(true)
+            }
+        } //else allow the user to login
+    }
+
     const indicatorList = indicators.map((item, index) => (
         <div className={count >= item ? "indicator indicator__filled" : "indicator"} key={index}>
         </div>
@@ -28,7 +43,7 @@ export default function Pin () {
     return (
         <div className="pin-wrapper">
             <div className="pin">
-                <p>{localStorage.getItem("hasPin") === "false" ? "please create a pin" : "Please Enter Your Pin"}</p>
+                <p>{props.hasPin === false ? "please create a pin" : "Please Enter Your Pin"}</p>
                 <div className="indicator-container">
                     {indicatorList}
                 </div>
@@ -50,7 +65,7 @@ export default function Pin () {
                 <div className="pin-row">
                     <div className={"pin-button"}  onClick={() => onBackClick()}><p>BACK</p></div>
                     <div className="pin-button" onClick={() => onPinClick(0)}><p>0</p></div>
-                    <div className="pin-button"><p>OK</p></div>
+                    <div className="pin-button" onClick={() => createPin(pinEntered)} ><p>OK</p></div>
                 </div>
             </div>
         </div>

@@ -1,4 +1,5 @@
-export default function CreateAccount () {
+
+export default function CreateAccount (props) {
     function onSubmit (e) {
 
         const formData = new FormData(e.target);
@@ -8,12 +9,15 @@ export default function CreateAccount () {
         localStorage.setItem("hasDetails", "true")
         console.log("the users detail flag has been changed to true")
 
-        localStorage.setItem("fullName", fullName)
-        console.log(JSON.stringify(localStorage.getItem("fullName")))
+        localStorage.setItem("userDetails", JSON.stringify({
+            fullName: fullName,
+            city: city,
+        }))
+        console.log(JSON.stringify(localStorage.getItem("userDetails")))
 
-        localStorage.setItem("city", city)
-        console.log(JSON.stringify(localStorage.getItem("city")))
-    }
+        props.setUser((prevState) => ({ ...prevState, fullName: fullName, city: city })
+
+        )}
 
     return (
         <div className="createFrom__wrapper">
