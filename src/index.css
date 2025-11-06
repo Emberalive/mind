@@ -18,7 +18,7 @@ p {
 }
 
 body {
-    height: 100vh;
+    height: fit-content;
     background-color: var(--background);
     font-family: 'Inter', sans-serif;
 }
@@ -31,6 +31,16 @@ body {
     align-items: center;
     gap: 30px;
 }
+
+.menu__not-sign-in {
+    width: 100%;
+    padding: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 30px;
+}
+
 .greeting > p {
     font-size: 22px;
     margin: 0;
@@ -52,6 +62,11 @@ body {
     gap: 16px;
     height: 33px;
 }
+
+.menu > .menu-items > .menu-item > p {
+    width: fit-content;
+}
+
 .menu > .menu-items > .menu-item > img{
     height: 30px;
     width: 30px;
@@ -120,6 +135,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    cursor: pointer;
 }
 
 .indicator-container {

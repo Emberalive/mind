@@ -18,7 +18,13 @@ export default function App() {
     );
     const [loggedIn, setLoggedIn] = useState(false);
 
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState(
+        localStorage.getItem("userDetails") === null ? "" : JSON.parse(localStorage.getItem("userDetails"))
+    );
+
+    const [feelings, setFeelings] = useState(
+        localStorage.getItem("feelings") === null ? "" : JSON.parse(localStorage.getItem("feelings"))
+    )
 
     useEffect(() => {
         if (localStorage.getItem("accountCreated") === null) {
@@ -37,18 +43,17 @@ export default function App() {
         console.log("Initialized local storage only if not already set");
     }, []);
 
-    useEffect(() => {
-        localStorage.setItem("accountCreated", "false");
+    // used to test account creation
+    // useEffect(() => {
+    //     localStorage.setItem("accountCreated", "false");
+    //
+    //     localStorage.setItem("hasDetails", "false");
+    //
+    //     localStorage.setItem("hasPin", "false");
+    //
+    //     console.log("Initialized local storage only if not already set");
+    // }, []);
 
-        localStorage.setItem("hasDetails", "false");
-
-        localStorage.setItem("hasPin", "false");
-
-        console.log("Initialized local storage only if not already set");
-    }, []);
-
-
-    const [pinEntered, setPinEntered] = useState([]);
 
     const [weather, setWeather] = useState({
         precipitation: "heavy Rain",
@@ -59,10 +64,15 @@ export default function App() {
   return (
     <main>
         {accountCreated === true && <>
-            <Menu user={user}/>
-            <Weather weather={weather}
-                     user={user}/>
-            {loggedIn === false && <Pin/>}
+            <Menu user={user} loggedIn={loggedIn}/>
+            {loggedIn && <Weather weather={weather}
+                      user={user}/>}
+            {loggedIn === false && <Pin hasPin={hasPin} setHasPin={setHasPin}
+                                        accountCreated={accountCreated}
+                                        setAccountCreated={setAccountCreated}
+                                        loggedIn={loggedIn}
+                                        setLoggedIn={setLoggedIn}
+            />}
         </>}
         {hasDetails === false && <>
             <CreateAccount user={user} setUser={setUser} />

@@ -4,18 +4,21 @@ export default function CreateAccount (props) {
 
         const formData = new FormData(e.target);
         const fullName = formData.get("name");
+        const firstName = fullName.split(" ")[0];
+        const lastName = fullName.split(" ")[1];
         const city = formData.get("city");
 
         localStorage.setItem("hasDetails", "true")
         console.log("the users detail flag has been changed to true")
 
         localStorage.setItem("userDetails", JSON.stringify({
-            fullName: fullName,
+            firstName: firstName,
+            lastName: lastName,
             city: city,
         }))
         console.log(JSON.stringify(localStorage.getItem("userDetails")))
 
-        props.setUser((prevState) => ({ ...prevState, fullName: fullName, city: city })
+        props.setUser((prevState) => ({ ...prevState, firstName: {firstName}, lastName: {lastName}, city: {city} })
 
         )}
 

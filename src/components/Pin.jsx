@@ -22,18 +22,38 @@ export default function Pin (props) {
         }//else do nothing
     }
 
-    function createPin (pin) {
+    function submitPin () {
+        console.log("Starting pin submission")
+        if (pinEntered.length !== 4) {
+            console.log("The pin is not the correct length")
+            return
+        }
+
         if (localStorage.getItem("hasPin") === "false") {
+            console.log("User has no account, Creation of account started")
             localStorage.setItem("hasPin", "true")
             props.setHasPin(true)
-            localStorage.setItem("pin", JSON.stringify(pin))
+            localStorage.setItem("pin", JSON.stringify(pinEntered))
             if (localStorage.getItem("pin") !== null) {
                 localStorage.setItem("accountCreated", "true")
                 console.log("account created set to true: " + JSON.stringify(localStorage.getItem("accountCreated")) )
                 props.setAccountCreated(true)
                 props.setLoggedIn(true)
             }
-        } //else allow the user to login
+        } else {
+            console.log("User has account, allowing user to log in")
+
+            const savedPin = localStorage.getItem("pin")
+
+            console.log('saved pin:', savedPin)
+            console.log('pin Entered:', JSON.stringify(pinEntered))
+
+            if (JSON.stringify(pinEntered) === savedPin) {
+                props.setLoggedIn(prevState => !prevState)
+            } else {
+                console.log("Pin is not the same, user not logged in")
+            }
+        }
     }
 
     const indicatorList = indicators.map((item, index) => (
@@ -65,7 +85,7 @@ export default function Pin (props) {
                 <div className="pin-row">
                     <div className={"pin-button"}  onClick={() => onBackClick()}><p>BACK</p></div>
                     <div className="pin-button" onClick={() => onPinClick(0)}><p>0</p></div>
-                    <div className="pin-button" onClick={() => createPin(pinEntered)} ><p>OK</p></div>
+                    <div className="pin-button" onClick={() => submitPin()} ><p>OK</p></div>
                 </div>
             </div>
         </div>
