@@ -1,6 +1,5 @@
 import ProfileIcon from '../assets/profile-icon.svg';
 
-
 export default function Menu(props) {
     const user = props.user
     return (
